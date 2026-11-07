@@ -7,10 +7,15 @@
 <meta name="description" content="The Lactation Way: gentle, judgment-free breastfeeding support with Neeraja Kuttuva Yathish Kumar, breastfeeding counsellor (Stillberaterin) based in Berlin and Certified Advanced Lactation Enabler (CALE). Home visits in Berlin, online worldwide.">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="logo.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;1,400;1,500&family=Manrope:wght@400;500;600&display=swap">
+<link rel="preload" href="fonts/cormorant-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
 <style>
+@font-face { font-family: "Cormorant"; font-style: normal; font-weight: 400; font-display: swap; src: url("fonts/cormorant-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Cormorant"; font-style: italic; font-weight: 400; font-display: swap; src: url("fonts/cormorant-latin-400-italic.woff2") format("woff2"); }
+@font-face { font-family: "Cormorant"; font-style: normal; font-weight: 500; font-display: swap; src: url("fonts/cormorant-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: "Cormorant"; font-style: italic; font-weight: 500; font-display: swap; src: url("fonts/cormorant-latin-500-italic.woff2") format("woff2"); }
+@font-face { font-family: "Manrope"; font-style: normal; font-weight: 400; font-display: swap; src: url("fonts/manrope-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Manrope"; font-style: normal; font-weight: 500; font-display: swap; src: url("fonts/manrope-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: "Manrope"; font-style: normal; font-weight: 600; font-display: swap; src: url("fonts/manrope-latin-600-normal.woff2") format("woff2"); }
 /* Layout: airy single column, wide margins, hairlines instead of boxes, one blush band for the call to action */
 :root {
   --bg: #fffcfb;
@@ -211,6 +216,9 @@ details[open] p { animation: rise .4s var(--ease) both; }
 
 footer { padding-block: 40px; font-size: .82rem; color: var(--muted); }
 footer .wrap { display: flex; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; }
+footer .legal { display: inline-flex; gap: 20px; }
+footer .legal a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+footer .legal a:hover { color: var(--rose); border-color: var(--rose); }
 
 /* Motion */
 @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
@@ -270,7 +278,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px 24px; fl
           <a class="btn btn-solid" href="#contact" data-i18n="heroBook">Book a consultation <span class="arrow" aria-hidden="true">→</span></a>
           <a class="btn btn-line" href="https://www.instagram.com/the_lactation_way/" target="_blank" rel="noopener">@the_lactation_way</a>
         </div>
-        <p class="hero-note" data-i18n="heroNote">Home visits in Berlin and online consultations worldwide.</p>
+        <p class="hero-note" data-i18n="heroNote">Home visits in Berlin and online consultations worldwide, in English, Tamil and Sourashtra.</p>
       </div>
       <div class="hero-art">
         <img src="logo.png" width="640" height="640" alt="The Lactation Way logo: Nurture, Bond, Trust">
@@ -358,9 +366,10 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px 24px; fl
         <h2 data-i18n="faqTitle">Frequently <em>asked</em></h2>
       </div>
       <div class="faq">
-        <details><summary data-i18n="q1">When should I book a consultation?</summary><p data-i18n="a1">Whenever something is worrying you. Some moms reach out during pregnancy to prepare, many in the first two weeks. The earlier we talk, the smaller the problem usually is.</p></details>
+        <details><summary data-i18n="q1">When should I book a consultation?</summary><p data-i18n="a1">Whenever something is worrying you. Some moms reach out during pregnancy to prepare, many in the first two weeks. Reaching out early can help address feeding concerns before they become more challenging.</p></details>
         <details><summary data-i18n="q2">Do you offer home visits?</summary><p data-i18n="a2">Yes, I visit families in and around Berlin. A home visit is lovely for hands-on latch help in the early days. Outside Berlin, I support you online.</p></details>
         <details><summary data-i18n="q3">How do online consultations work?</summary><p data-i18n="a3">We meet on a video call at a time that suits you. You feed your baby as usual, and we go through latch, positioning and all your questions together. You can join from anywhere in the world.</p></details>
+        <details><summary data-i18n="qLang">Which languages do you speak?</summary><p data-i18n="aLang">I offer consultations in English, Tamil and Sourashtra. I also speak a little German.</p></details>
         <details><summary data-i18n="q4">How long is a session?</summary><p data-i18n="a4">A first consultation usually takes 60 to 90 minutes, so we have time to go through a full feed together. Follow-ups are shorter.</p></details>
         <details><summary data-i18n="q5">What does a consultation cost?</summary><p data-i18n="a5">It depends on the type of session and whether it is a home visit or online. Send me a DM and I'll share my current prices before you book.</p></details>
         <details><summary data-i18n="q6">What does a consultation include?</summary><p data-i18n="a6">I offer education and practical guidance based on what you share with me about your feeding, your baby and your goals. I don't diagnose medical conditions or prescribe medication.</p></details>
@@ -383,6 +392,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px 24px; fl
           <div><dt data-i18n="kWhatsapp">WhatsApp channel</dt><dd><a href="https://whatsapp.com/channel/0029Vb6eatNJpe8ou2FiK43g" target="_blank" rel="noopener" data-i18n="vWhatsapp">Tips and updates</a></dd></div>
           <div><dt data-i18n="kHome">Home visits</dt><dd data-i18n="vHome">In and around Berlin</dd></div>
           <div><dt>Online</dt><dd data-i18n="vOnline">Worldwide</dd></div>
+          <div><dt data-i18n="kLang">Languages</dt><dd data-i18n="vLang">English, Tamil, Sourashtra</dd></div>
           <div><dt data-i18n="kCred">Credential</dt><dd>Certified Advanced Lactation Enabler</dd></div>
         </dl>
       </div>
@@ -394,6 +404,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px 24px; fl
   <div class="wrap">
     <span>© 2026 The Lactation Way · Nurture · Bond · Trust</span>
     <span data-i18n="footerNote">Information on this site is general and does not replace medical advice.</span>
+    <span class="legal"><a href="impressum.html">Impressum</a><a href="datenschutz.html" data-i18n="privacyLink">Privacy policy</a></span>
   </div>
 </footer>
 
@@ -405,7 +416,7 @@ var I18N_DE = {
   heroTitle: "Um Hilfe zu bitten ist <em>völlig normal.</em>",
   heroLead: "Einfühlsame, persönliche und wertfreie Stillberatung mit Neeraja. Bei Problemen beim Anlegen, zu wenig Milch, Schmerzen beim Stillen oder einfach bei der Frage: „Mache ich das richtig?“",
   heroBook: "Beratung anfragen <span class=\"arrow\" aria-hidden=\"true\">→</span>",
-  heroNote: "Hausbesuche in Berlin und Online-Beratung weltweit.",
+  heroNote: "Hausbesuche in Berlin und Online-Beratung weltweit, auf Englisch, Tamil und Sourashtra.",
   svcLabel: "Leistungen",
   svcTitle: "Du bist <em>nicht allein</em> damit",
   svcLead: "Stillen ist natürlich, aber das heißt nicht, dass es immer leicht ist. Jede Beratung richtet sich nach dir, deinem Baby und deinen Zielen.",
@@ -434,11 +445,13 @@ var I18N_DE = {
   faqLabel: "Fragen",
   faqTitle: "Häufig <em>gestellte Fragen</em>",
   q1: "Wann sollte ich eine Beratung buchen?",
-  a1: "Immer dann, wenn dich etwas beschäftigt. Manche Mütter melden sich schon in der Schwangerschaft, viele in den ersten zwei Wochen. Je früher wir sprechen, desto kleiner ist das Problem meistens.",
+  a1: "Immer dann, wenn dich etwas beschäftigt. Manche Mütter melden sich schon in der Schwangerschaft, viele in den ersten zwei Wochen. Wenn du dich früh meldest, können wir Stillsorgen angehen, bevor sie schwieriger werden.",
   q2: "Bietest du Hausbesuche an?",
   a2: "Ja, ich besuche Familien in und um Berlin. Ein Hausbesuch ist ideal für praktische Hilfe beim Anlegen in den ersten Tagen. Außerhalb Berlins begleite ich dich online.",
   q3: "Wie funktioniert die Online-Beratung?",
   a3: "Wir treffen uns per Videocall zu einer Zeit, die dir passt. Du stillst dein Baby wie gewohnt, und wir gehen gemeinsam Anlegen, Stillpositionen und alle deine Fragen durch. Du kannst von überall auf der Welt teilnehmen.",
+  qLang: "In welchen Sprachen berätst du?",
+  aLang: "Ich berate auf Englisch, Tamil und Sourashtra. Etwas Deutsch spreche ich auch.",
   q4: "Wie lange dauert eine Beratung?",
   a4: "Ein Erstgespräch dauert meist 60 bis 90 Minuten, damit wir Zeit haben, eine ganze Stillmahlzeit gemeinsam zu begleiten. Folgetermine sind kürzer.",
   q5: "Was kostet eine Beratung?",
@@ -454,6 +467,8 @@ var I18N_DE = {
   kWhatsapp: "WhatsApp-Kanal", vWhatsapp: "Tipps und Neuigkeiten",
   kHome: "Hausbesuche", vHome: "In und um Berlin",
   vOnline: "Weltweit", kCred: "Qualifikation",
+  kLang: "Sprachen", vLang: "Englisch, Tamil, Sourashtra",
+  privacyLink: "Datenschutz",
   footerNote: "Die Informationen auf dieser Seite sind allgemein und ersetzen keine medizinische Beratung."
 };
 var LABELS = { en: { open: "Open menu", close: "Close menu" }, de: { open: "Menü öffnen", close: "Menü schließen" } };
