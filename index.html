@@ -133,10 +133,10 @@ td:first-child { font-weight: 600; white-space: nowrap; }
 .monogram { max-width: 150px; font-size: 3.2rem; } }
 
 /* Certification */
-.cert { display: grid; grid-template-columns: 1fr 1.1fr; gap: 48px; align-items: center; }
+.cert { display: grid; max-width: 760px; }
 .cert > * { min-width: 0; }
 .cert-copy { display: grid; gap: 18px; }
-.facts { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px 24px; margin: 6px 0 0; }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 14px 24px; margin: 6px 0 0; }
 .facts dt { font-size: .76rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
 .facts dd { margin: 2px 0 0; font-weight: 600; font-variant-numeric: tabular-nums; }
 .cert-img { margin: 0; }
@@ -321,9 +321,7 @@ footer a { color: var(--muted); }
         </dl>
         <p class="small">Breastfeeding counselling supports, and does not replace, care from your midwife or doctor. Medical conditions are diagnosed and treated by medical professionals.</p>
       </div>
-      <figure class="cert-img">
-        <img src="certificate.jpg" width="1200" height="848" alt="CALE certificate of completion for Neeraja Kuttuva Yathish Kumar from Breastfeeding Support for Indian Mothers, certified 19 March 2025, valid until 19 March 2030">
-      </figure>
+      
     </div>
   </section>
 
