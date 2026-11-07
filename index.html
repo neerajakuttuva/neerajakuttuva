@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>The Lactation Way</title>
 <meta name="description" content="The Lactation Way: calm, practical breastfeeding and lactation support with Neeraja Kuttuva Yathish Kumar.">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=Figtree:wght@400;500;600&display=swap">
@@ -16,8 +18,8 @@
   --ink: #24232b;
   --muted: #5d5b66;
   --line: #dfe0da;
-  --fig: #6b2d4b;
-  --fig-soft: #f1e6eb;
+  --fig: #8e4a42;
+  --fig-soft: #f5e8e4;
   --sage: #5f7a6c;
   --sage-soft: #e5ece7;
   --display: "Newsreader", Georgia, "Times New Roman", serif;
@@ -27,12 +29,12 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #17161b; --surface: #201f26; --ink: #ecebef; --muted: #a9a6b2; --line: #33313b;
-    --fig: #e2a3c0; --fig-soft: #3a2532; --sage: #9fbcad; --sage-soft: #23302a; color-scheme: dark;
+    --fig: #e3ab9e; --fig-soft: #3a2a27; --sage: #9fbcad; --sage-soft: #23302a; color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --bg: #17161b; --surface: #201f26; --ink: #ecebef; --muted: #a9a6b2; --line: #33313b;
-  --fig: #e2a3c0; --fig-soft: #3a2532; --sage: #9fbcad; --sage-soft: #23302a; color-scheme: dark;
+  --fig: #e3ab9e; --fig-soft: #3a2a27; --sage: #9fbcad; --sage-soft: #23302a; color-scheme: dark;
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -58,7 +60,9 @@ section { padding-block: clamp(56px, 9vw, 104px); }
 body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
 header.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
 header.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px; }
-.brand { font-family: var(--display); font-size: 1.3rem; text-decoration: none; color: var(--ink); }
+.brand { font-family: var(--display); font-size: 1.3rem; text-decoration: none; color: var(--ink); display: inline-flex; align-items: center; gap: 10px; }
+.brand img { width: 44px; height: 44px; border-radius: 50%; box-shadow: 0 0 0 1px var(--line); }
+@media (max-width: 420px) { .brand span { display: none; } }
 .brand em { color: var(--fig); }
 nav { display: flex; gap: 22px; flex-wrap: wrap; }
 nav a { color: var(--muted); text-decoration: none; font-size: .95rem; }
@@ -79,8 +83,8 @@ nav a:hover { color: var(--ink); }
 .hero-copy { display: grid; gap: 24px; min-width: 0; }
 .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
 .hero-note { font-size: .9rem; color: var(--muted); }
-.hero-art { aspect-ratio: 1; max-width: 100%; position: relative; }
-.hero-art svg { width: 100%; height: auto; display: block; }
+.hero-art { max-width: 440px; width: 100%; justify-self: center; }
+.hero-art img { width: 100%; height: auto; display: block; border-radius: 50%; box-shadow: 0 24px 60px -30px color-mix(in srgb, var(--fig) 55%, transparent), 0 0 0 1px var(--line); }
 @media (max-width: 820px) { .hero .wrap { grid-template-columns: 1fr; } .hero-art { max-width: 340px; justify-self: center; } }
 
 /* Services */
@@ -158,7 +162,7 @@ footer a { color: var(--muted); }
 
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="#top">The <em>Lactation</em> Way</a>
+    <a class="brand" href="#top"><img src="logo-small.png" width="44" height="44" alt=""><span>The <em>Lactation</em> Way</span></a>
     <nav aria-label="Main">
       <a href="#services">Services</a>
       <a href="#how">How it works</a>
@@ -183,15 +187,8 @@ footer a { color: var(--muted); }
         </div>
         <p class="hero-note">Home visits in and around Berlin. Online consultations everywhere else. DMs are always open.</p>
       </div>
-      <div class="hero-art" aria-hidden="true">
-        <svg viewBox="0 0 400 400" role="presentation">
-          <circle cx="200" cy="200" r="178" fill="var(--sage-soft)"/>
-          <path d="M200 70 C 255 150, 300 200, 300 255 A 100 100 0 0 1 100 255 C 100 200, 145 150, 200 70 Z" fill="var(--surface)" stroke="var(--fig)" stroke-width="3"/>
-          <path d="M160 250 a 42 42 0 0 0 42 42" fill="none" stroke="var(--fig)" stroke-width="3" stroke-linecap="round"/>
-          <circle cx="318" cy="112" r="14" fill="var(--fig)" opacity=".85"/>
-          <circle cx="88" cy="132" r="8" fill="var(--sage)"/>
-          <circle cx="330" cy="300" r="6" fill="var(--sage)"/>
-        </svg>
+      <div class="hero-art">
+        <img src="logo.png" width="640" height="640" alt="The Lactation Way logo: Nurture, Bond, Trust">
       </div>
     </div>
   </section>
@@ -331,7 +328,7 @@ footer a { color: var(--muted); }
 
 <footer>
   <div class="wrap">
-    <span>© 2026 The Lactation Way · Neeraja Kuttuva Yathish Kumar</span>
+    <span>© 2026 The Lactation Way · Nurture · Bond · Trust</span>
     <span>Information on this site is general and does not replace medical advice.</span>
   </div>
 </footer>
