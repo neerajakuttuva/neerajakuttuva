@@ -190,6 +190,12 @@ footer a { color: var(--muted); }
 nav a.nav-cta { display: none; color: var(--bg); }
 @media (max-width: 720px) { nav a.nav-cta { display: inline-flex; color: var(--bg); } header.top a.header-cta { display: none; } }
 
+/* Photo: no right-click or long-press save */
+.portrait-wrap { position: relative; width: 100%; max-width: 260px; -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
+.portrait-wrap::after { content: ""; position: absolute; inset: 0; }
+.portrait-wrap .portrait { pointer-events: none; -webkit-user-drag: none; }
+@media (max-width: 700px) { .portrait-wrap { max-width: 220px; } }
+
 /* Motion */
 @keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
 @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
@@ -212,7 +218,7 @@ nav a.nav-cta { display: none; color: var(--bg); }
 .svc { transition: background .25s ease; }
 .svc:hover { background: var(--fig-soft); }
 .portrait { transition: transform .4s ease; }
-.portrait:hover { transform: rotate(-1.5deg) scale(1.02); }
+.portrait-wrap:hover .portrait { transform: rotate(-1.5deg) scale(1.02); }
 .pill { transition: border-color .2s ease, color .2s ease; }
 .pill:hover { border-color: var(--fig); color: var(--fig); }
 summary::after { transition: transform .25s ease; }
@@ -310,7 +316,7 @@ header.top.open nav { animation: drop .25s ease both; }
 
   <section id="about" class="alt">
     <div class="wrap about">
-      <img class="portrait" src="neeraja.jpg" width="440" height="455" alt="Neeraja Kuttuva Yathish Kumar, breastfeeding counsellor">
+      <div class="portrait-wrap"><img class="portrait" src="neeraja.jpg" width="440" height="455" alt="Neeraja Kuttuva Yathish Kumar, breastfeeding counsellor" draggable="false"></div>
       <div class="about-copy">
         <span class="eyebrow">About</span>
         <h2>Hi, I'm Neeraja. I'm so glad you're here.</h2>
@@ -397,6 +403,9 @@ header.top.open nav { animation: drop .25s ease both; }
   header.querySelectorAll('nav a').forEach(function (a) { a.addEventListener('click', function () { setOpen(false); }); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
 })();
+document.querySelectorAll('.portrait-wrap').forEach(function (el) {
+  ['contextmenu', 'dragstart'].forEach(function (ev) { el.addEventListener(ev, function (e) { e.preventDefault(); }); });
+});
 </script>
 </body>
 </html>
