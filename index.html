@@ -67,12 +67,23 @@ header.top .wrap { display: flex; align-items: center; justify-content: space-be
 nav { display: flex; gap: 22px; flex-wrap: wrap; }
 nav a { color: var(--muted); text-decoration: none; font-size: .95rem; }
 nav a:hover { color: var(--ink); }
+.menu-toggle { display: none; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); color: var(--ink); cursor: pointer; align-items: center; justify-content: center; }
+.menu-toggle span, .menu-toggle span::before, .menu-toggle span::after { display: block; width: 18px; height: 2px; background: currentColor; border-radius: 2px; position: relative; transition: transform .2s ease, background .2s ease; }
+.menu-toggle span::before, .menu-toggle span::after { content: ""; position: absolute; left: 0; }
+.menu-toggle span::before { top: -6px; } .menu-toggle span::after { top: 6px; }
+header.top.open .menu-toggle span { background: transparent; }
+header.top.open .menu-toggle span::before { transform: translateY(6px) rotate(45deg); }
+header.top.open .menu-toggle span::after { transform: translateY(-6px) rotate(-45deg); }
+.nav-cta { display: none; }
+@media (prefers-reduced-motion: reduce) { .menu-toggle span, .menu-toggle span::before, .menu-toggle span::after { transition: none; } }
 @media (max-width: 720px) {
-  header.top .wrap { flex-wrap: wrap; row-gap: 8px; padding-block: 10px 0; }
-  nav { order: 3; flex: 0 0 100%; flex-wrap: nowrap; gap: 6px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 10px; margin-inline: -4px; }
-  nav::-webkit-scrollbar { display: none; }
-  nav a { flex: 0 0 auto; padding: 7px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); font-size: .9rem; color: var(--ink); }
-  header.top .btn { padding: 10px 16px; font-size: .9rem; }
+  .menu-toggle { display: inline-flex; }
+  .header-cta { display: none; }
+  header.top .wrap { flex-wrap: wrap; }
+  nav { display: none; order: 3; flex: 0 0 100%; flex-direction: column; gap: 0; padding-block: 6px 14px; }
+  header.top.open nav { display: flex; }
+  nav a { padding: 13px 4px; border-bottom: 1px solid var(--line); font-size: 1.02rem; color: var(--ink); }
+  nav a.nav-cta { display: inline-flex; justify-content: center; margin-top: 14px; border-bottom: 0; padding: 13px 22px; }
 }
 
 .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 22px; border-radius: 999px; font-weight: 600; font-size: .98rem; text-decoration: none; border: 1.5px solid var(--fig); }
@@ -181,14 +192,16 @@ footer a { color: var(--muted); }
 <header class="top">
   <div class="wrap">
     <a class="brand" href="#top"><img src="logo-small.png" width="44" height="44" alt=""><span>The <em>Lactation</em> Way</span></a>
-    <nav aria-label="Main">
+    <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mainnav"><span></span></button>
+    <nav id="mainnav" aria-label="Main">
       <a href="#services">Services</a>
       <a href="#how">How it works</a>
       <a href="#about">About</a>
       <a href="#certification">Certification</a>
       <a href="#faq">FAQ</a>
+      <a class="btn btn-primary nav-cta" href="#contact">Book a consult</a>
     </nav>
-    <a class="btn btn-primary" href="#contact">Book a consult</a>
+    <a class="btn btn-primary header-cta" href="#contact">Book a consult</a>
   </div>
 </header>
 
@@ -332,5 +345,21 @@ footer a { color: var(--muted); }
     <span>Information on this site is general and does not replace medical advice.</span>
   </div>
 </footer>
+
+<script>
+(function () {
+  var header = document.querySelector('header.top');
+  var btn = header && header.querySelector('.menu-toggle');
+  if (!btn) return;
+  function setOpen(open) {
+    header.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  }
+  btn.addEventListener('click', function () { setOpen(!header.classList.contains('open')); });
+  header.querySelectorAll('nav a').forEach(function (a) { a.addEventListener('click', function () { setOpen(false); }); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
+})();
+</script>
 </body>
 </html>
