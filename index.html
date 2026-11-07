@@ -73,7 +73,11 @@ header.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; b
 header.top.scrolled { border-bottom-color: var(--line); }
 header.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 76px; }
 .brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; font-family: var(--display); font-size: 1.45rem; font-weight: 500; }
-.brand img { width: 40px; height: 40px; border-radius: 50%; }
+.brand img { width: 44px; height: 44px; border-radius: 50%; }
+.brand-text { display: grid; line-height: 1.1; }
+.brand-name { font-size: 1.45rem; }
+.brand-tag { font-family: var(--body); font-size: .66rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-top: 3px; }
+@media (max-width: 380px) { .brand-name { font-size: 1.25rem; } .brand-tag { font-size: .58rem; letter-spacing: .1em; } }
 .brand em { color: var(--rose); }
 nav { display: flex; align-items: center; gap: 32px; }
 nav a { text-decoration: none; font-size: .9rem; color: var(--muted); position: relative; transition: color .2s ease; }
@@ -214,7 +218,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px 24px; fl
 
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="#top"><img src="logo-small.png" width="40" height="40" alt=""><span>The <em>Lactation</em> Way</span></a>
+    <a class="brand" href="#top"><img src="logo-small.png" width="44" height="44" alt=""><span class="brand-text"><span class="brand-name">The <em>Lactation</em> Way</span><span class="brand-tag">Breastfeeding counsellor · CALE certified</span></span></a>
     <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mainnav"><span></span></button>
     <nav id="mainnav" aria-label="Main">
       <a href="#services">Services</a>
@@ -232,7 +236,6 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px 24px; fl
   <section class="hero">
     <div class="wrap">
       <div class="hero-copy">
-        <span class="label">Breastfeeding counsellor · CALE certified</span>
         <h1>Let's normalize <em>asking for help.</em></h1>
         <p class="lead">Gentle, personalized and judgment-free breastfeeding support with Neeraja. For latching, low supply, pain while feeding, or simply wondering "am I doing this right?"</p>
         <div class="hero-actions">
