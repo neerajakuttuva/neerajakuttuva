@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Lactation Way</title>
+<meta name="description" content="The Lactation Way: calm, practical breastfeeding and lactation support with Neeraja Kuttuva Yathish Kumar.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=Figtree:wght@400;500;600&display=swap">
+<style>
+/* Layout: one calm reading column with a wide hero, soft "milk" ground, fig accent used sparingly */
+:root {
+  --bg: #f4f5f1;
+  --surface: #ffffff;
+  --ink: #24232b;
+  --muted: #5d5b66;
+  --line: #dfe0da;
+  --fig: #6b2d4b;
+  --fig-soft: #f1e6eb;
+  --sage: #5f7a6c;
+  --sage-soft: #e5ece7;
+  --display: "Newsreader", Georgia, "Times New Roman", serif;
+  --body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --wrap: 1080px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #17161b; --surface: #201f26; --ink: #ecebef; --muted: #a9a6b2; --line: #33313b;
+    --fig: #e2a3c0; --fig-soft: #3a2532; --sage: #9fbcad; --sage-soft: #23302a; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #17161b; --surface: #201f26; --ink: #ecebef; --muted: #a9a6b2; --line: #33313b;
+  --fig: #e2a3c0; --fig-soft: #3a2532; --sage: #9fbcad; --sage-soft: #23302a; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 400 17px/1.65 var(--body); }
+a { color: var(--fig); }
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--fig); outline-offset: 3px; border-radius: 4px; }
+.wrap {
+  max-width: var(--wrap); margin: 0 auto;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+}
+h1, h2, h3 { font-family: var(--display); font-weight: 500; line-height: 1.15; text-wrap: balance; margin: 0; }
+h2 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
+h3 { font-size: 1.3rem; }
+p { margin: 0; }
+.eyebrow { font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: var(--sage); font-weight: 600; }
+.lead { color: var(--muted); max-width: 60ch; }
+section { padding-block: clamp(56px, 9vw, 104px); }
+.sec-head { display: grid; gap: 14px; margin-bottom: 40px; }
+
+/* Header */
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+header.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+header.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px; }
+.brand { font-family: var(--display); font-size: 1.3rem; text-decoration: none; color: var(--ink); }
+.brand em { color: var(--fig); }
+nav { display: flex; gap: 22px; flex-wrap: wrap; }
+nav a { color: var(--muted); text-decoration: none; font-size: .95rem; }
+nav a:hover { color: var(--ink); }
+@media (max-width: 720px) { nav { display: none; } }
+
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 22px; border-radius: 999px; font-weight: 600; font-size: .98rem; text-decoration: none; border: 1.5px solid var(--fig); }
+.btn-primary { background: var(--fig); color: var(--bg); }
+.btn-primary:hover { filter: brightness(1.08); }
+.btn-ghost { color: var(--fig); background: transparent; }
+.btn-ghost:hover { background: var(--fig-soft); }
+
+/* Hero */
+.hero { padding-block: clamp(48px, 8vw, 96px) clamp(40px, 6vw, 72px); }
+.hero .wrap { display: grid; grid-template-columns: 1.25fr 1fr; gap: 48px; align-items: center; }
+.hero h1 { font-size: clamp(2.6rem, 6.4vw, 4.6rem); letter-spacing: -.01em; }
+.hero h1 em { color: var(--fig); font-style: italic; }
+.hero-copy { display: grid; gap: 24px; min-width: 0; }
+.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.hero-note { font-size: .9rem; color: var(--muted); }
+.hero-art { aspect-ratio: 1; max-width: 100%; position: relative; }
+.hero-art svg { width: 100%; height: auto; display: block; }
+@media (max-width: 820px) { .hero .wrap { grid-template-columns: 1fr; } .hero-art { max-width: 340px; justify-self: center; } }
+
+/* Services */
+.services { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; }
+.svc { background: var(--surface); padding: 28px; display: grid; gap: 10px; align-content: start; }
+.svc .when { font-size: .8rem; color: var(--sage); font-weight: 600; letter-spacing: .04em; }
+.svc p { color: var(--muted); font-size: .97rem; }
+@media (max-width: 900px) { .services { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+@media (max-width: 580px) { .services { grid-template-columns: 1fr; } }
+
+/* Process */
+.alt { background: var(--surface); border-block: 1px solid var(--line); }
+.steps { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 28px; counter-reset: s; }
+.steps li { counter-increment: s; display: grid; gap: 8px; align-content: start; border-top: 2px solid var(--fig); padding-top: 18px; }
+.steps li::before { content: "Step " counter(s); font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; color: var(--fig); font-weight: 600; }
+.steps p { color: var(--muted); font-size: .96rem; }
+@media (max-width: 860px) { .steps { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+@media (max-width: 500px) { .steps { grid-template-columns: 1fr; } }
+
+/* Signs table */
+.guide { display: grid; grid-template-columns: 1fr 1.3fr; gap: 48px; align-items: start; }
+.guide > * { min-width: 0; }
+@media (max-width: 860px) { .guide { grid-template-columns: 1fr; } }
+.table-box { overflow-x: auto; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
+table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; font-size: .95rem; }
+th, td { text-align: left; padding: 13px 16px; border-bottom: 1px solid var(--line); vertical-align: top; }
+thead th { font-size: .76rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-weight: 600; background: var(--sage-soft); }
+tbody tr:last-child td { border-bottom: 0; }
+td:first-child { font-weight: 600; white-space: nowrap; }
+.flag { margin-top: 18px; padding: 18px 20px; border-radius: 14px; background: var(--fig-soft); font-size: .95rem; display: grid; gap: 8px; }
+.flag strong { color: var(--fig); }
+.flag ul { margin: 0; padding-left: 20px; }
+.small { font-size: .85rem; color: var(--muted); }
+
+/* About */
+.about { display: grid; grid-template-columns: 260px 1fr; gap: 48px; align-items: start; }
+.portrait { width: 100%; max-width: 260px; aspect-ratio: 440/455; height: auto; object-fit: cover; border-radius: 22px; display: block; }
+.quote { font-family: var(--display); font-style: italic; font-size: 1.35rem; line-height: 1.4; color: var(--fig) !important; }
+.monogram { width: 100%; max-width: 220px; aspect-ratio: 1; border-radius: 50%; background: var(--sage-soft); display: grid; place-items: center; font-family: var(--display); font-size: 4.5rem; color: var(--sage); font-style: italic; }
+.about-copy { display: grid; gap: 18px; max-width: 64ch; min-width: 0; }
+.about-copy p { color: var(--muted); }
+.pills { display: flex; flex-wrap: wrap; gap: 8px; }
+.pill { font-size: .85rem; padding: 6px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); }
+@media (max-width: 700px) { .about { grid-template-columns: 1fr; } .portrait { width: 100%; max-width: 260px; aspect-ratio: 440/455; height: auto; object-fit: cover; border-radius: 22px; display: block; }
+.quote { font-family: var(--display); font-style: italic; font-size: 1.35rem; line-height: 1.4; color: var(--fig) !important; }
+.monogram { max-width: 150px; font-size: 3.2rem; } }
+
+/* FAQ */
+.faq { display: grid; gap: 0; border-top: 1px solid var(--line); max-width: 820px; }
+details { border-bottom: 1px solid var(--line); padding-block: 4px; }
+summary { cursor: pointer; list-style: none; padding: 18px 40px 18px 0; font-family: var(--display); font-size: 1.2rem; position: relative; }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: "+"; position: absolute; right: 6px; top: 14px; font-size: 1.5rem; color: var(--fig); font-family: var(--body); }
+details[open] summary::after { content: "–"; }
+details p { color: var(--muted); padding-bottom: 20px; max-width: 64ch; }
+
+/* Contact */
+.contact { background: var(--fig); color: var(--bg); }
+.contact .wrap { display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; align-items: center; }
+.contact h2 { color: var(--bg); }
+.contact p { color: color-mix(in srgb, var(--bg) 82%, var(--fig)); max-width: 52ch; }
+.contact .btn { background: var(--bg); color: var(--fig); border-color: var(--bg); }
+.contact-list { display: grid; gap: 14px; }
+.contact-list .row { display: grid; gap: 2px; }
+.contact-list .k { font-size: .76rem; letter-spacing: .12em; text-transform: uppercase; opacity: .75; }
+.contact-list a { color: var(--bg); font-weight: 600; }
+@media (max-width: 760px) { .contact .wrap { grid-template-columns: 1fr; } }
+
+footer { padding-block: 32px; font-size: .88rem; color: var(--muted); }
+footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+footer a { color: var(--muted); }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top">The <em>Lactation</em> Way</a>
+    <nav aria-label="Main">
+      <a href="#services">Services</a>
+      <a href="#how">How it works</a>
+      <a href="#guide">First weeks</a>
+      <a href="#about">About</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn btn-primary" href="#contact">Book a consult</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-copy">
+        <span class="eyebrow">Certified Advanced Lactation Consultant</span>
+        <h1>Let's normalize <em>asking for help.</em></h1>
+        <p class="lead">Gentle, personalized and judgment-free breastfeeding support with Neeraja. For latching, low supply, pain while feeding, or simply wondering "am I doing this right?"</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#contact">Book a consultation</a>
+          <a class="btn btn-ghost" href="https://www.instagram.com/the_lactation_way/" target="_blank" rel="noopener">Follow @the_lactation_way</a>
+        </div>
+        <p class="hero-note">Online consultations, wherever you are. DMs are always open.</p>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <svg viewBox="0 0 400 400" role="presentation">
+          <circle cx="200" cy="200" r="178" fill="var(--sage-soft)"/>
+          <path d="M200 70 C 255 150, 300 200, 300 255 A 100 100 0 0 1 100 255 C 100 200, 145 150, 200 70 Z" fill="var(--surface)" stroke="var(--fig)" stroke-width="3"/>
+          <path d="M160 250 a 42 42 0 0 0 42 42" fill="none" stroke="var(--fig)" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="318" cy="112" r="14" fill="var(--fig)" opacity=".85"/>
+          <circle cx="88" cy="132" r="8" fill="var(--sage)"/>
+          <circle cx="330" cy="300" r="6" fill="var(--sage)"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="alt">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Services</span>
+        <h2>You're not alone in this</h2>
+        <p class="lead">Breastfeeding is natural, but that does not mean it always comes easy. Each session is built around you, your baby and your goals.</p>
+      </div>
+      <div class="services">
+        <article class="svc">
+          <span class="when">Latching</span>
+          <h3>Latching difficulties</h3>
+          <p>Positioning and a deep, comfortable latch. We look at a feed together and adjust step by step.</p>
+        </article>
+        <article class="svc">
+          <span class="when">Supply</span>
+          <h3>Low milk supply</h3>
+          <p>We review feeds, nappies and weight together, find what is behind it and build a clear plan.</p>
+        </article>
+        <article class="svc">
+          <span class="when">Comfort</span>
+          <h3>Pain while feeding</h3>
+          <p>Sore or cracked nipples, engorgement and painful feeds. Feeding should not hurt, and help is available.</p>
+        </article>
+        <article class="svc">
+          <span class="when">Reassurance</span>
+          <h3>"Am I doing this right?"</h3>
+          <p>A calm check-in to answer your questions and confirm what is going well, so you can feed with confidence.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">How it works</span>
+        <h2>From first message to follow-up</h2>
+      </div>
+      <ol class="steps">
+        <li><h3>Send a DM</h3><p>Message @the_lactation_way on Instagram with a short note on what is happening.</p></li>
+        <li><h3>Short intake</h3><p>A few questions about birth, feeding so far and your goals, so the session starts with context.</p></li>
+        <li><h3>Consultation</h3><p>A one-to-one online session. We observe a feed, work on what you need and agree a clear care plan.</p></li>
+        <li><h3>Follow-up</h3><p>A check-in a few days later to see how the plan is working and adjust it.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="guide" class="alt">
+    <div class="wrap guide">
+      <div class="sec-head" style="margin-bottom:0">
+        <span class="eyebrow">First weeks guide</span>
+        <h2>Is my baby getting enough?</h2>
+        <p class="lead">The most common question in the early days. Wet and dirty nappies are one of the best signs to watch. Expect 8 to 12 feeds in 24 hours.</p>
+        <p class="small">General guidance for healthy, full-term babies. Your midwife, paediatrician or lactation consultant can tell you what is right for your baby.</p>
+      </div>
+      <div>
+        <div class="table-box">
+          <table>
+            <thead><tr><th>Baby's age</th><th>Wet nappies / 24 h</th><th>Dirty nappies / 24 h</th></tr></thead>
+            <tbody>
+              <tr><td>Day 1</td><td>1 or more</td><td>1 or more, dark and sticky</td></tr>
+              <tr><td>Day 2</td><td>2 or more</td><td>1 or more, dark</td></tr>
+              <tr><td>Day 3</td><td>3 or more</td><td>2 or more, turning greenish</td></tr>
+              <tr><td>Day 4</td><td>4 or more, pale</td><td>3 or more, turning yellow</td></tr>
+              <tr><td>Day 5 to week 6</td><td>6 or more, pale and heavy</td><td>2 or more, soft and yellow</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="flag" role="note">
+          <strong>Contact your doctor or midwife promptly if</strong>
+          <ul>
+            <li>your baby has fewer wet nappies than above, or very dark urine after day 4</li>
+            <li>your baby is very sleepy and hard to wake for feeds</li>
+            <li>you have a fever with a red, painful area on the breast</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap about">
+      <img class="portrait" src="neeraja.jpg" width="440" height="455" alt="Neeraja Kuttuva Yathish Kumar, lactation consultant">
+      <div class="about-copy">
+        <span class="eyebrow">About</span>
+        <h2>Hi, I'm Neeraja. I'm so glad you're here.</h2>
+        <p>I'm a Certified Advanced Lactation Consultant, trained with Breastfeeding Support for Indian Mothers (BSIM). I support new moms through the beautiful and sometimes challenging journey of breastfeeding.</p>
+        <p>My support is gentle, personalized and judgment-free, so you can feel confident, calm and connected with your baby. Before lactation work I trained as a computer science engineer, and I bring the same clear, step-by-step thinking to every care plan.</p>
+        <p class="quote">Let's normalize the mess and the magic.<br>Let's normalize breastfeeding.</p>
+        <div class="pills">
+          <span class="pill">Certified Advanced Lactation Consultant</span>
+          <span class="pill">Online consultations</span>
+          <span class="pill">Judgment-free</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="alt">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Questions</span>
+        <h2>Frequently asked</h2>
+      </div>
+      <div class="faq">
+        <details><summary>When should I book a consultation?</summary><p>Any time you have a concern. Many parents book in pregnancy to prepare, and many in the first two weeks. Earlier support usually means smaller problems.</p></details>
+        <details><summary>How do online consultations work?</summary><p>We meet on a video call at a time that suits you. You feed your baby as usual, and we work through latch, positioning and your questions together. You can join from anywhere.</p></details>
+        <details><summary>How long is a session?</summary><p>An initial consultation usually takes 60 to 90 minutes, so there is time to observe a full feed. Follow-ups are shorter.</p></details>
+        <details><summary>What does a consultation cost?</summary><p>Fees depend on the type of session. Send a DM and you will get the current prices before you book.</p></details>
+        <details><summary>Does this replace my doctor or midwife?</summary><p>No. Lactation support works alongside your medical care. If something needs medical attention, you will be told and referred.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <div style="display:grid;gap:18px;min-width:0">
+        <h2>Ready to feel more confident about feeding?</h2>
+        <p>DMs are always open. Send a short message about your situation and you will get a reply with available times and next steps.</p>
+        <div><a class="btn" href="https://www.instagram.com/the_lactation_way/" target="_blank" rel="noopener">Message on Instagram</a></div>
+      </div>
+      <div class="contact-list">
+        <div class="row"><span class="k">Instagram</span><a href="https://www.instagram.com/the_lactation_way/" target="_blank" rel="noopener">@the_lactation_way</a></div>
+        <div class="row"><span class="k">Sessions</span><span>Online, wherever you are</span></div>
+        <div class="row"><span class="k">Credential</span><span>Certified Advanced Lactation Consultant (BSIM)</span></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 The Lactation Way · Neeraja Kuttuva Yathish Kumar</span>
+    <span>Information on this site is general and does not replace medical advice.</span>
+  </div>
+</footer>
+</body>
+</html>
