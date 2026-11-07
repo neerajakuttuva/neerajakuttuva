@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>The Lactation Way</title>
-<meta name="description" content="The Lactation Way: calm, practical breastfeeding and lactation support with Neeraja Kuttuva Yathish Kumar.">
+<meta name="description" content="The Lactation Way: calm, practical breastfeeding and lactation support with Neeraja Kuttuva Yathish Kumar, Stillberaterin in Berlin and Certified Advanced Lactation Enabler (CALE).">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -132,6 +132,18 @@ td:first-child { font-weight: 600; white-space: nowrap; }
 .quote { font-family: var(--display); font-style: italic; font-size: 1.35rem; line-height: 1.4; color: var(--fig) !important; }
 .monogram { max-width: 150px; font-size: 3.2rem; } }
 
+/* Certification */
+.cert { display: grid; grid-template-columns: 1fr 1.1fr; gap: 48px; align-items: center; }
+.cert > * { min-width: 0; }
+.cert-copy { display: grid; gap: 18px; }
+.facts { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px 24px; margin: 6px 0 0; }
+.facts dt { font-size: .76rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.facts dd { margin: 2px 0 0; font-weight: 600; font-variant-numeric: tabular-nums; }
+.cert-img { margin: 0; }
+.cert-img img { width: 100%; height: auto; display: block; border-radius: 10px; box-shadow: 0 0 0 1px var(--line), 0 18px 40px -24px rgba(0,0,0,.35); }
+@media (max-width: 860px) { .cert { grid-template-columns: 1fr; } }
+@media (max-width: 420px) { .facts { grid-template-columns: 1fr; } }
+
 /* FAQ */
 .faq { display: grid; gap: 0; border-top: 1px solid var(--line); max-width: 820px; }
 details { border-bottom: 1px solid var(--line); padding-block: 4px; }
@@ -168,6 +180,7 @@ footer a { color: var(--muted); }
       <a href="#how">How it works</a>
       <a href="#guide">First weeks</a>
       <a href="#about">About</a>
+      <a href="#certification">Certification</a>
       <a href="#faq">FAQ</a>
     </nav>
     <a class="btn btn-primary" href="#contact">Book a consult</a>
@@ -178,7 +191,7 @@ footer a { color: var(--muted); }
   <section class="hero">
     <div class="wrap">
       <div class="hero-copy">
-        <span class="eyebrow">Certified Advanced Lactation Consultant</span>
+        <span class="eyebrow">Stillberaterin in Berlin · Certified Advanced Lactation Enabler (CALE)</span>
         <h1>Let's normalize <em>asking for help.</em></h1>
         <p class="lead">Gentle, personalized and judgment-free breastfeeding support with Neeraja. For latching, low supply, pain while feeding, or simply wondering "am I doing this right?"</p>
         <div class="hero-actions">
@@ -275,15 +288,15 @@ footer a { color: var(--muted); }
 
   <section id="about">
     <div class="wrap about">
-      <img class="portrait" src="neeraja.jpg" width="440" height="455" alt="Neeraja Kuttuva Yathish Kumar, lactation consultant">
+      <img class="portrait" src="neeraja.jpg" width="440" height="455" alt="Neeraja Kuttuva Yathish Kumar, breastfeeding counsellor">
       <div class="about-copy">
         <span class="eyebrow">About</span>
         <h2>Hi, I'm Neeraja. I'm so glad you're here.</h2>
-        <p>I'm a Certified Advanced Lactation Consultant, trained with Breastfeeding Support for Indian Mothers (BSIM). I support new moms through the beautiful and sometimes challenging journey of breastfeeding.</p>
+        <p>I'm a Certified Advanced Lactation Enabler (CALE), certified by Breastfeeding Support for Indian Mothers (BSIM), and I work as a Stillberaterin (breastfeeding counsellor) in Berlin. I support new moms through the beautiful and sometimes challenging journey of breastfeeding.</p>
         <p>My support is gentle, personalized and judgment-free, so you can feel confident, calm and connected with your baby. Before lactation work I trained as a computer science engineer, and I bring the same clear, step-by-step thinking to every care plan.</p>
         <p class="quote">Let's normalize the mess and the magic.<br>Let's normalize breastfeeding.</p>
         <div class="pills">
-          <span class="pill">Certified Advanced Lactation Consultant</span>
+          <span class="pill">CALE certified (BSIM)</span>
           <span class="pill">Home visits in Berlin</span>
           <span class="pill">Online worldwide</span>
           <span class="pill">Judgment-free</span>
@@ -292,7 +305,27 @@ footer a { color: var(--muted); }
     </div>
   </section>
 
-  <section id="faq" class="alt">
+    <section id="certification" class="alt">
+    <div class="wrap cert">
+      <div class="cert-copy">
+        <span class="eyebrow">Training and certification</span>
+        <h2>Certified Advanced Lactation Enabler (CALE)</h2>
+        <p class="lead">Advanced lactation training certified by Breastfeeding Support for Indian Mothers (BSIM). The course was designed by an International Board Certified Lactation Consultant (IBCLC).</p>
+        <dl class="facts">
+          <div><dt>Certified by</dt><dd>Breastfeeding Support for Indian Mothers</dd></div>
+          <div><dt>Certified on</dt><dd>19 March 2025</dd></div>
+          <div><dt>Valid until</dt><dd>19 March 2030</dd></div>
+          <div><dt>Certificate no.</dt><dd>2023-01-25</dd></div>
+        </dl>
+        <p class="small">Breastfeeding counselling supports, and does not replace, care from your midwife or doctor. Medical conditions are diagnosed and treated by medical professionals.</p>
+      </div>
+      <figure class="cert-img">
+        <img src="certificate.jpg" width="1200" height="848" alt="CALE certificate of completion for Neeraja Kuttuva Yathish Kumar from Breastfeeding Support for Indian Mothers, certified 19 March 2025, valid until 19 March 2030">
+      </figure>
+    </div>
+  </section>
+
+  <section id="faq">
     <div class="wrap">
       <div class="sec-head">
         <span class="eyebrow">Questions</span>
@@ -321,7 +354,7 @@ footer a { color: var(--muted); }
         <div class="row"><span class="k">WhatsApp channel</span><a href="https://whatsapp.com/channel/0029Vb6eatNJpe8ou2FiK43g" target="_blank" rel="noopener">Tips and updates</a></div>
         <div class="row"><span class="k">Home visits</span><span>In and around Berlin</span></div>
         <div class="row"><span class="k">Online</span><span>Worldwide</span></div>
-        <div class="row"><span class="k">Credential</span><span>Certified Advanced Lactation Consultant (BSIM)</span></div>
+        <div class="row"><span class="k">Credential</span><span>Certified Advanced Lactation Enabler (CALE), BSIM</span></div>
       </div>
     </div>
   </section>
