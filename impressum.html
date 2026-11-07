@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="de">
+<html lang="de" data-lang="de">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -44,13 +44,20 @@ a { color: var(--ink); text-decoration-color: var(--rose); text-underline-offset
 footer { border-top: 1px solid var(--line); padding-block: 32px; font-size: .82rem; color: var(--muted); }
 footer .wrap { display: flex; gap: 20px; flex-wrap: wrap; justify-content: space-between; }
 footer a { color: var(--muted); }
+.hdr-right { display: inline-flex; align-items: center; gap: 16px; }
+.lang { display: inline-flex; padding: 3px; border: 1px solid var(--line); border-radius: 999px; gap: 2px; }
+.lang button { appearance: none; border: 0; background: transparent; color: var(--muted); font: 600 .7rem/1 var(--body); letter-spacing: .12em; padding: 8px 10px; border-radius: 999px; cursor: pointer; }
+.lang button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+html[data-lang="de"] .l-en, html[data-lang="en"] .l-de { display: none !important; }
+.note-en { font-size: .88rem; border-left: 1px solid var(--rose); padding-left: 14px; margin-bottom: 32px; }
+@media (max-width: 420px) { .brand span { display: none; } }
 :focus-visible { outline: 2px solid var(--rose); outline-offset: 3px; border-radius: 4px; }
 </style>
 </head>
 <body>
-<header><div class="wrap"><a class="brand" href="./"><img src="logo-small.png" width="38" height="38" alt=""><span>The <em>Lactation</em> Way</span></a><a class="back" href="./">← Startseite</a></div></header>
+<header><div class="wrap"><a class="brand" href="./"><img src="logo-small.png" width="38" height="38" alt=""><span>The <em>Lactation</em> Way</span></a><span class="hdr-right"><a class="back" href="./"><span class="l-de">← Startseite</span><span class="l-en">← Home</span></a><span class="lang" role="group" aria-label="Sprache / Language"><button type="button" data-lang="en" aria-pressed="false">EN</button><button type="button" data-lang="de" aria-pressed="true">DE</button></span></span></div></header>
 <main><div class="wrap">
-<h1>Impressum</h1>
+<div class="l-de" lang="de" data-title-de="Impressum · The Lactation Way"><h1>Impressum</h1>
 <p class="sub">Legal notice under German law (§ 5 DDG).</p>
 <h2>Angaben gemäß § 5 DDG</h2>
 <div class="box"><p><strong>Neeraja Kuttuva Yathish Kumar</strong><br>The Lactation Way, Stillberatung<br>10711 Berlin<br>Deutschland</p></div>
@@ -70,7 +77,44 @@ footer a { color: var(--muted); }
 <p>Diese Website enthält Links zu externen Websites Dritter, auf deren Inhalte ich keinen Einfluss habe. Für diese Inhalte ist der jeweilige Anbieter verantwortlich. Bei Bekanntwerden von Rechtsverletzungen werden entsprechende Links umgehend entfernt.</p>
 <h2>Urheberrecht</h2>
 <p>Texte, Logo und Fotos auf dieser Website sind urheberrechtlich geschützt. Eine Verwendung ohne vorherige Zustimmung ist nicht gestattet.</p>
+</div>
+<div class="l-en" lang="en" data-title-en="Legal notice · The Lactation Way"><h1>Legal notice</h1>
+<p class="sub">Impressum under German law (§ 5 DDG).</p>
+<p class="note-en">This is an English translation for convenience. The German version is legally binding.</p>
+<h2>Information pursuant to § 5 DDG</h2>
+<div class="box"><p><strong>Neeraja Kuttuva Yathish Kumar</strong><br>The Lactation Way, breastfeeding counselling<br>10711 Berlin<br>Germany</p></div>
+<h2>Contact</h2>
+<p>Email: <a href="mailto:neerajakuttuva@gmail.com">neerajakuttuva@gmail.com</a><br>Instagram: <a href="https://www.instagram.com/the_lactation_way/" target="_blank" rel="noopener">@the_lactation_way</a></p>
+<h2>Professional title</h2>
+<p>Breastfeeding counsellor (Stillberaterin). This title is not legally regulated in Germany.</p>
+<p>Qualification: Certified Advanced Lactation Enabler (CALE), certified by Breastfeeding Support for Indian Mothers (BSIM), India.</p>
+<p>Consultations are purely educational. No diagnoses are made, no treatments are carried out and no medication is prescribed.</p>
+<h2>Responsible for content under § 18 (2) MStV</h2>
+<p>Neeraja Kuttuva Yathish Kumar, 10711 Berlin</p>
+<h2>Consumer dispute resolution</h2>
+<p>I am neither willing nor obliged to take part in dispute resolution proceedings before a consumer arbitration board.</p>
+<h2>Liability for content</h2>
+<p>The content of this website has been prepared with care. It is for general information only and does not replace advice from a doctor or midwife. No guarantee can be given for the accuracy, completeness or timeliness of the content.</p>
+<h2>Liability for links</h2>
+<p>This website contains links to external third-party websites whose content I cannot influence. The respective provider is responsible for that content. Links will be removed promptly if any legal violations become known.</p>
+<h2>Copyright</h2>
+<p>Texts, logo and photos on this website are protected by copyright. They may not be used without prior permission.</p>
+</div>
 </div></main>
-<footer><div class="wrap"><span>© 2026 The Lactation Way</span><span><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></span></div></footer>
+<footer><div class="wrap"><span>© 2026 The Lactation Way</span><span><a href="impressum.html">Impressum</a> · <a href="datenschutz.html"><span class="l-de">Datenschutz</span><span class="l-en">Privacy policy</span></a></span></div></footer>
+<script>
+(function () {
+  var root = document.documentElement, btns = document.querySelectorAll(".lang button");
+  function apply(l) {
+    l = l === "en" ? "en" : "de";
+    root.setAttribute("data-lang", l); root.lang = l;
+    btns.forEach(function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-lang") === l ? "true" : "false"); });
+    var t = document.querySelector("[data-title-" + l + "]"); if (t) document.title = t.getAttribute("data-title-" + l);
+  }
+  btns.forEach(function (b) { b.addEventListener("click", function () { var l = b.getAttribute("data-lang"); apply(l); try { localStorage.setItem("tlw-lang", l); } catch (e) {} }); });
+  var saved = null; try { saved = localStorage.getItem("tlw-lang"); } catch (e) {}
+  apply(saved || ((navigator.language || "").toLowerCase().indexOf("de") === 0 ? "de" : "en"));
+})();
+</script>
 </body>
 </html>
