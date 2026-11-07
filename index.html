@@ -71,15 +71,16 @@ section { padding-block: clamp(80px, 12vw, 152px); scroll-margin-top: 80px; }
 body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
 header.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: saturate(1.4) blur(12px); -webkit-backdrop-filter: saturate(1.4) blur(12px); border-bottom: 1px solid transparent; transition: border-color .3s ease; }
 header.top.scrolled { border-bottom-color: var(--line); }
-header.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 76px; }
+header.top .wrap { display: flex; align-items: center; gap: 24px; min-height: 76px; }
+nav { margin-left: auto; }
 .brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; font-family: var(--display); font-size: 1.45rem; font-weight: 500; }
 .brand img { width: 44px; height: 44px; border-radius: 50%; }
 .brand-text { display: grid; line-height: 1.1; }
 .brand-name { font-size: 1.45rem; }
 .brand-tag { font-family: var(--body); font-size: .66rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-top: 3px; }
-@media (max-width: 380px) { .brand-name { font-size: 1.25rem; } .brand-tag { font-size: .58rem; letter-spacing: .1em; } }
+@media (max-width: 360px) { .brand-name { font-size: 1.12rem; } .brand-tag { font-size: .54rem; letter-spacing: .05em; } .brand img { width: 34px; height: 34px; } }
 .brand em { color: var(--rose); }
-nav { display: flex; align-items: center; gap: 32px; }
+nav { display: flex; align-items: center; gap: 28px; }
 nav a { text-decoration: none; font-size: .9rem; color: var(--muted); position: relative; transition: color .2s ease; }
 nav a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 1px; background: var(--rose); transform: scaleX(0); transform-origin: left; transition: transform .3s var(--ease); }
 nav a:hover { color: var(--ink); }
@@ -92,8 +93,9 @@ header.top .header-cta { min-height: 42px; padding: 0 20px; }
 .menu-toggle span { transform: translateY(-3.5px); }
 header.top.open .menu-toggle span { transform: translateY(0) rotate(45deg); }
 header.top.open .menu-toggle span::before { transform: translateY(-7px) rotate(-90deg); }
-@media (max-width: 860px) {
+@media (max-width: 1180px) {
   .menu-toggle { display: inline-flex; }
+  .lang { margin-left: auto; }
   header.top a.header-cta { display: none; }
   header.top .wrap { flex-wrap: wrap; }
   nav { display: none; order: 3; flex: 0 0 100%; flex-direction: column; align-items: stretch; gap: 0; padding-block: 4px 24px; }
@@ -103,8 +105,26 @@ header.top.open .menu-toggle span::before { transform: translateY(-7px) rotate(-
   nav a.nav-cta { display: inline-flex; margin-top: 24px; border-bottom: 1px solid var(--ink); padding: 0 26px; font-family: var(--body); font-size: .92rem; color: var(--bg); }
 }
 
+/* Language switch */
+.lang { display: inline-flex; align-items: center; padding: 3px; border: 1px solid var(--line); border-radius: 999px; gap: 2px; flex: 0 0 auto; }
+.lang button { appearance: none; border: 0; background: transparent; color: var(--muted); font: 600 .72rem/1 var(--body); letter-spacing: .12em; padding: 9px 11px; border-radius: 999px; cursor: pointer; transition: background .2s ease, color .2s ease; }
+.lang button:hover { color: var(--ink); }
+.lang button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+
+@media (max-width: 560px) {
+  header.top .wrap { gap: 12px; flex-wrap: wrap; }
+  .brand { gap: 10px; min-width: 0; }
+  .brand img { width: 38px; height: 38px; }
+  .brand-name { font-size: 1.28rem; white-space: nowrap; }
+  .brand-tag { font-size: .58rem; letter-spacing: .08em; white-space: nowrap; }
+  .lang { padding: 0; border: 0; }
+  .lang button[aria-pressed="true"] { display: none; }
+  .lang button { border: 1px solid var(--line); padding: 10px 11px; }
+  .menu-toggle { margin-right: -8px; }
+}
+
 /* Hero */
-.hero { padding-block: clamp(56px, 9vw, 120px) clamp(72px, 10vw, 136px); }
+.hero { padding-block: clamp(56px, 9vw, 120px) clamp(72px, 10vw, 136px); overflow-x: clip; }
 .hero .wrap { display: grid; grid-template-columns: 1.35fr 1fr; gap: clamp(40px, 6vw, 96px); align-items: center; }
 .hero-copy { display: grid; gap: 28px; min-width: 0; }
 .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 6px; }
@@ -222,17 +242,21 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px 24px; fl
 
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="#top"><img src="logo-small.png" width="44" height="44" alt=""><span class="brand-text"><span class="brand-name">The <em>Lactation</em> Way</span><span class="brand-tag">Breastfeeding counsellor</span></span></a>
-    <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mainnav"><span></span></button>
+    <a class="brand" href="#top"><img src="logo-small.png" width="44" height="44" alt=""><span class="brand-text"><span class="brand-name">The <em>Lactation</em> Way</span><span class="brand-tag" data-i18n="brandTag">Breastfeeding counsellor</span></span></a>
     <nav id="mainnav" aria-label="Main">
-      <a href="#services">Services</a>
-      <a href="#how">How it works</a>
-      <a href="#about">About</a>
-      <a href="#certification">Certification</a>
-      <a href="#faq">FAQ</a>
-      <a class="btn btn-solid nav-cta" href="#contact">Book a consult</a>
+      <a href="#services" data-i18n="navServices">Services</a>
+      <a href="#how" data-i18n="navHow">How it works</a>
+      <a href="#about" data-i18n="navAbout">About</a>
+      <a href="#certification" data-i18n="navCert">Certification</a>
+      <a href="#faq" data-i18n="navFaq">FAQ</a>
+      <a class="btn btn-solid nav-cta" href="#contact" data-i18n="cta">Book a consult</a>
     </nav>
-    <a class="btn btn-line header-cta" href="#contact">Book a consult</a>
+    <div class="lang" role="group" aria-label="Language / Sprache">
+      <button type="button" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang="de" aria-pressed="false">DE</button>
+    </div>
+    <a class="btn btn-line header-cta" href="#contact" data-i18n="cta">Book a consult</a>
+    <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mainnav"><span></span></button>
   </div>
 </header>
 
@@ -240,13 +264,13 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px 24px; fl
   <section class="hero">
     <div class="wrap">
       <div class="hero-copy">
-        <h1>Let's normalize <em>asking for help.</em></h1>
-        <p class="lead">Gentle, personalized and judgment-free breastfeeding support with Neeraja. For latching, low supply, pain while feeding, or simply wondering "am I doing this right?"</p>
+        <h1 data-i18n="heroTitle">Let's normalize <em>asking for help.</em></h1>
+        <p class="lead" data-i18n="heroLead">Gentle, personalized and judgment-free breastfeeding support with Neeraja. For latching, low supply, pain while feeding, or simply wondering "am I doing this right?"</p>
         <div class="hero-actions">
-          <a class="btn btn-solid" href="#contact">Book a consultation <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="btn btn-solid" href="#contact" data-i18n="heroBook">Book a consultation <span class="arrow" aria-hidden="true">→</span></a>
           <a class="btn btn-line" href="https://www.instagram.com/the_lactation_way/" target="_blank" rel="noopener">@the_lactation_way</a>
         </div>
-        <p class="hero-note">Home visits in Berlin and online consultations worldwide.</p>
+        <p class="hero-note" data-i18n="heroNote">Home visits in Berlin and online consultations worldwide.</p>
       </div>
       <div class="hero-art">
         <img src="logo.png" width="640" height="640" alt="The Lactation Way logo: Nurture, Bond, Trust">
@@ -257,30 +281,30 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px 24px; fl
   <section id="services">
     <div class="wrap">
       <div class="sec-head">
-        <span class="label">Services</span>
-        <h2>You're <em>not alone</em> in this</h2>
-        <p class="lead">Breastfeeding is natural, but that does not mean it always comes easy. Each session is built around you, your baby and your goals.</p>
+        <span class="label" data-i18n="svcLabel">Services</span>
+        <h2 data-i18n="svcTitle">You're <em>not alone</em> in this</h2>
+        <p class="lead" data-i18n="svcLead">Breastfeeding is natural, but that does not mean it always comes easy. Each session is built around you, your baby and your goals.</p>
       </div>
       <div class="services">
         <article class="svc">
-          <span class="tag">Latching</span>
-          <h3>Latching difficulties</h3>
-          <p>Positioning and a deep, comfortable latch. We look at a feed together and adjust step by step.</p>
+          <span class="tag" data-i18n="s1Tag">Latching</span>
+          <h3 data-i18n="s1Title">Latching difficulties</h3>
+          <p data-i18n="s1Text">Positioning and a deep, comfortable latch. We look at a feed together and adjust step by step.</p>
         </article>
         <article class="svc">
-          <span class="tag">Supply</span>
-          <h3>Low milk supply</h3>
-          <p>We review feeds, nappies and weight together, find what is behind it and build a clear plan.</p>
+          <span class="tag" data-i18n="s2Tag">Supply</span>
+          <h3 data-i18n="s2Title">Low milk supply</h3>
+          <p data-i18n="s2Text">We review feeds, nappies and weight together, find what is behind it and build a clear plan.</p>
         </article>
         <article class="svc">
-          <span class="tag">Comfort</span>
-          <h3>Pain while feeding</h3>
-          <p>Sore or cracked nipples, engorgement and painful feeds. Feeding should not hurt, and help is available.</p>
+          <span class="tag" data-i18n="s3Tag">Comfort</span>
+          <h3 data-i18n="s3Title">Pain while feeding</h3>
+          <p data-i18n="s3Text">Sore or cracked nipples, engorgement and painful feeds. Feeding should not hurt, and help is available.</p>
         </article>
         <article class="svc">
-          <span class="tag">Reassurance</span>
-          <h3>"Am I doing this right?"</h3>
-          <p>A calm check-in to answer your questions and confirm what is going well, so you can feed with confidence.</p>
+          <span class="tag" data-i18n="s4Tag">Reassurance</span>
+          <h3 data-i18n="s4Title">"Am I doing this right?"</h3>
+          <p data-i18n="s4Text">A calm check-in to answer your questions and confirm what is going well, so you can feed with confidence.</p>
         </article>
       </div>
     </div>
@@ -289,14 +313,14 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px 24px; fl
   <section id="how" class="process">
     <div class="wrap">
       <div class="sec-head">
-        <span class="label">How it works</span>
-        <h2>From first message <em>to follow-up</em></h2>
+        <span class="label" data-i18n="howLabel">How it works</span>
+        <h2 data-i18n="howTitle">From first message <em>to follow-up</em></h2>
       </div>
       <ol class="steps">
-        <li><h3>Send a DM</h3><p>Message @the_lactation_way on Instagram with a short note on what is happening.</p></li>
-        <li><h3>Short intake</h3><p>A few questions about birth, feeding so far and your goals, so the session starts with context.</p></li>
-        <li><h3>Consultation</h3><p>At your home in and around Berlin, or online from anywhere. We go through a feed and your questions, and agree a clear plan.</p></li>
-        <li><h3>Follow-up</h3><p>A check-in a few days later to see how the plan is working and adjust it.</p></li>
+        <li><h3 data-i18n="p1Title">Send a DM</h3><p data-i18n="p1Text">Message @the_lactation_way on Instagram with a short note on what is happening.</p></li>
+        <li><h3 data-i18n="p2Title">Short intake</h3><p data-i18n="p2Text">A few questions about birth, feeding so far and your goals, so the session starts with context.</p></li>
+        <li><h3 data-i18n="p3Title">Consultation</h3><p data-i18n="p3Text">At your home in and around Berlin, or online from anywhere. We go through a feed and your questions, and agree a clear plan.</p></li>
+        <li><h3 data-i18n="p4Title">Follow-up</h3><p data-i18n="p4Text">A check-in a few days later to see how the plan is working and adjust it.</p></li>
       </ol>
     </div>
   </section>
@@ -305,11 +329,11 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px 24px; fl
     <div class="wrap about">
       <div class="portrait-wrap"><img class="portrait" src="neeraja.jpg" width="440" height="455" alt="Neeraja Kuttuva Yathish Kumar, breastfeeding counsellor" draggable="false"></div>
       <div class="about-copy">
-        <span class="label">About</span>
-        <h2>Hi, I'm Neeraja. <em>I'm so glad you're here.</em></h2>
-        <p>I'm a Certified Advanced Lactation Enabler (CALE), certified by Breastfeeding Support for Indian Mothers (BSIM), and I work as a breastfeeding counsellor (Stillberaterin) based in Berlin. I support new moms through the beautiful and sometimes challenging journey of breastfeeding.</p>
-        <p>My support is gentle, personalized and judgment-free, so you can feel confident, calm and connected with your baby. Before lactation work I trained as a computer science engineer, and I bring the same clear, step-by-step thinking to every care plan.</p>
-        <p class="quote">Let's normalize the mess and the magic. Let's normalize breastfeeding.</p>
+        <span class="label" data-i18n="aboutLabel">About</span>
+        <h2 data-i18n="aboutTitle">Hi, I'm Neeraja. <em>I'm so glad you're here.</em></h2>
+        <p data-i18n="aboutP1">I'm a Certified Advanced Lactation Enabler (CALE), certified by Breastfeeding Support for Indian Mothers (BSIM), and I work as a breastfeeding counsellor (Stillberaterin) based in Berlin. I support new moms through the beautiful and sometimes challenging journey of breastfeeding.</p>
+        <p data-i18n="aboutP2">My support is gentle, personalized and judgment-free, so you can feel confident, calm and connected with your baby. Before lactation work I trained as a computer science engineer, and I bring the same clear, step-by-step thinking to every care plan.</p>
+        <p class="quote" data-i18n="aboutQuote">Let's normalize the mess and the magic. Let's normalize breastfeeding.</p>
       </div>
     </div>
   </section>
@@ -317,12 +341,12 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px 24px; fl
   <section id="certification" class="cert-band">
     <div class="wrap cert">
       <div class="cert-copy">
-        <span class="label">Training and certification</span>
+        <span class="label" data-i18n="certLabel">Training and certification</span>
         <h2>Certified Advanced Lactation Enabler <em>(CALE)</em></h2>
       </div>
       <div class="cert-copy">
-        <p>The highest level of the three-level lactation programme by Breastfeeding Support for Indian Mothers (BSIM): Elementary, Intermediate and Advanced. The course was designed by an International Board Certified Lactation Consultant (IBCLC).</p>
-        <p class="note">Breastfeeding counselling supports, and does not replace, care from your midwife or doctor. Medical conditions are diagnosed and treated by medical professionals.</p>
+        <p data-i18n="certText">The highest level of the three-level lactation programme by Breastfeeding Support for Indian Mothers (BSIM): Elementary, Intermediate and Advanced. The course was designed by an International Board Certified Lactation Consultant (IBCLC).</p>
+        <p class="note" data-i18n="certNote">Breastfeeding counselling supports, and does not replace, care from your midwife or doctor. Medical conditions are diagnosed and treated by medical professionals.</p>
       </div>
     </div>
   </section>
@@ -330,17 +354,17 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px 24px; fl
   <section id="faq">
     <div class="wrap faq-grid">
       <div class="sec-head">
-        <span class="label">Questions</span>
-        <h2>Frequently <em>asked</em></h2>
+        <span class="label" data-i18n="faqLabel">Questions</span>
+        <h2 data-i18n="faqTitle">Frequently <em>asked</em></h2>
       </div>
       <div class="faq">
-        <details><summary>When should I book a consultation?</summary><p>Whenever something is worrying you. Some moms reach out during pregnancy to prepare, many in the first two weeks. The earlier we talk, the smaller the problem usually is.</p></details>
-        <details><summary>Do you offer home visits?</summary><p>Yes, I visit families in and around Berlin. A home visit is lovely for hands-on latch help in the early days. Outside Berlin, I support you online.</p></details>
-        <details><summary>How do online consultations work?</summary><p>We meet on a video call at a time that suits you. You feed your baby as usual, and we go through latch, positioning and all your questions together. You can join from anywhere in the world.</p></details>
-        <details><summary>How long is a session?</summary><p>A first consultation usually takes 60 to 90 minutes, so we have time to go through a full feed together. Follow-ups are shorter.</p></details>
-        <details><summary>What does a consultation cost?</summary><p>It depends on the type of session and whether it is a home visit or online. Send me a DM and I'll share my current prices before you book.</p></details>
-        <details><summary>What does a consultation include?</summary><p>I offer education and practical guidance based on what you share with me about your feeding, your baby and your goals. I don't diagnose medical conditions or prescribe medication.</p></details>
-        <details><summary>Does this replace my doctor or midwife?</summary><p>No. My support works alongside your medical care. If something may need medical attention, I'll guide you to your doctor or Hebamme.</p></details>
+        <details><summary data-i18n="q1">When should I book a consultation?</summary><p data-i18n="a1">Whenever something is worrying you. Some moms reach out during pregnancy to prepare, many in the first two weeks. The earlier we talk, the smaller the problem usually is.</p></details>
+        <details><summary data-i18n="q2">Do you offer home visits?</summary><p data-i18n="a2">Yes, I visit families in and around Berlin. A home visit is lovely for hands-on latch help in the early days. Outside Berlin, I support you online.</p></details>
+        <details><summary data-i18n="q3">How do online consultations work?</summary><p data-i18n="a3">We meet on a video call at a time that suits you. You feed your baby as usual, and we go through latch, positioning and all your questions together. You can join from anywhere in the world.</p></details>
+        <details><summary data-i18n="q4">How long is a session?</summary><p data-i18n="a4">A first consultation usually takes 60 to 90 minutes, so we have time to go through a full feed together. Follow-ups are shorter.</p></details>
+        <details><summary data-i18n="q5">What does a consultation cost?</summary><p data-i18n="a5">It depends on the type of session and whether it is a home visit or online. Send me a DM and I'll share my current prices before you book.</p></details>
+        <details><summary data-i18n="q6">What does a consultation include?</summary><p data-i18n="a6">I offer education and practical guidance based on what you share with me about your feeding, your baby and your goals. I don't diagnose medical conditions or prescribe medication.</p></details>
+        <details><summary data-i18n="q7">Does this replace my doctor or midwife?</summary><p data-i18n="a7">No. My support works alongside your medical care. If something may need medical attention, I'll guide you to your doctor or Hebamme.</p></details>
       </div>
     </div>
   </section>
@@ -349,17 +373,17 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px 24px; fl
     <div class="wrap">
       <div class="contact-card">
         <div class="contact-main">
-          <span class="label">Get in touch</span>
-          <h2>Ready to feel more <em>confident</em> about feeding?</h2>
-          <p>My DMs are always open. Send me a short message about what's happening, and I'll reply with available times and next steps.</p>
-          <div><a class="btn btn-solid" href="https://www.instagram.com/the_lactation_way/" target="_blank" rel="noopener">Message me on Instagram <span class="arrow" aria-hidden="true">→</span></a></div>
+          <span class="label" data-i18n="contactLabel">Get in touch</span>
+          <h2 data-i18n="contactTitle">Ready to feel more <em>confident</em> about feeding?</h2>
+          <p data-i18n="contactText">My DMs are always open. Send me a short message about what's happening, and I'll reply with available times and next steps.</p>
+          <div><a class="btn btn-solid" href="https://www.instagram.com/the_lactation_way/" target="_blank" rel="noopener" data-i18n="contactBtn">Message me on Instagram <span class="arrow" aria-hidden="true">→</span></a></div>
         </div>
         <dl class="contact-list">
           <div><dt>Instagram</dt><dd><a href="https://www.instagram.com/the_lactation_way/" target="_blank" rel="noopener">@the_lactation_way</a></dd></div>
-          <div><dt>WhatsApp channel</dt><dd><a href="https://whatsapp.com/channel/0029Vb6eatNJpe8ou2FiK43g" target="_blank" rel="noopener">Tips and updates</a></dd></div>
-          <div><dt>Home visits</dt><dd>In and around Berlin</dd></div>
-          <div><dt>Online</dt><dd>Worldwide</dd></div>
-          <div><dt>Credential</dt><dd>Certified Advanced Lactation Enabler</dd></div>
+          <div><dt data-i18n="kWhatsapp">WhatsApp channel</dt><dd><a href="https://whatsapp.com/channel/0029Vb6eatNJpe8ou2FiK43g" target="_blank" rel="noopener" data-i18n="vWhatsapp">Tips and updates</a></dd></div>
+          <div><dt data-i18n="kHome">Home visits</dt><dd data-i18n="vHome">In and around Berlin</dd></div>
+          <div><dt>Online</dt><dd data-i18n="vOnline">Worldwide</dd></div>
+          <div><dt data-i18n="kCred">Credential</dt><dd>Certified Advanced Lactation Enabler</dd></div>
         </dl>
       </div>
     </div>
@@ -369,30 +393,122 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px 24px; fl
 <footer>
   <div class="wrap">
     <span>© 2026 The Lactation Way · Nurture · Bond · Trust</span>
-    <span>Information on this site is general and does not replace medical advice.</span>
+    <span data-i18n="footerNote">Information on this site is general and does not replace medical advice.</span>
   </div>
 </footer>
 
 <script>
+var I18N_DE = {
+  brandTag: "Stillberaterin",
+  navServices: "Leistungen", navHow: "Ablauf", navAbout: "Über mich", navCert: "Zertifizierung", navFaq: "FAQ",
+  cta: "Termin anfragen",
+  heroTitle: "Um Hilfe zu bitten ist <em>völlig normal.</em>",
+  heroLead: "Einfühlsame, persönliche und wertfreie Stillberatung mit Neeraja. Bei Problemen beim Anlegen, zu wenig Milch, Schmerzen beim Stillen oder einfach bei der Frage: „Mache ich das richtig?“",
+  heroBook: "Beratung anfragen <span class=\"arrow\" aria-hidden=\"true\">→</span>",
+  heroNote: "Hausbesuche in Berlin und Online-Beratung weltweit.",
+  svcLabel: "Leistungen",
+  svcTitle: "Du bist <em>nicht allein</em> damit",
+  svcLead: "Stillen ist natürlich, aber das heißt nicht, dass es immer leicht ist. Jede Beratung richtet sich nach dir, deinem Baby und deinen Zielen.",
+  s1Tag: "Anlegen", s1Title: "Probleme beim Anlegen",
+  s1Text: "Stillpositionen und ein tiefes, angenehmes Anlegen. Wir schauen uns gemeinsam eine Stillmahlzeit an und passen Schritt für Schritt an.",
+  s2Tag: "Milchmenge", s2Title: "Zu wenig Milch",
+  s2Text: "Wir schauen gemeinsam auf Stillmahlzeiten, Windeln und Gewicht, finden heraus, was dahintersteckt, und erstellen einen klaren Plan.",
+  s3Tag: "Wohlbefinden", s3Title: "Schmerzen beim Stillen",
+  s3Text: "Wunde oder rissige Brustwarzen, eine Brustdrüsenschwellung und schmerzhaftes Stillen. Stillen sollte nicht wehtun, und es gibt Hilfe.",
+  s4Tag: "Sicherheit", s4Title: "„Mache ich das richtig?“",
+  s4Text: "Ein ruhiges Gespräch, in dem wir deine Fragen klären und schauen, was schon gut läuft, damit du sicher stillen kannst.",
+  howLabel: "Ablauf",
+  howTitle: "Von der ersten Nachricht <em>bis zur Nachbetreuung</em>",
+  p1Title: "Schreib mir", p1Text: "Schick @the_lactation_way auf Instagram eine kurze Nachricht, worum es geht.",
+  p2Title: "Kurzes Vorgespräch", p2Text: "Ein paar Fragen zur Geburt, zum bisherigen Stillen und zu deinen Zielen, damit die Beratung gut vorbereitet startet.",
+  p3Title: "Beratung", p3Text: "Bei dir zu Hause in und um Berlin oder online von überall. Wir gehen gemeinsam eine Stillmahlzeit und deine Fragen durch und vereinbaren einen klaren Plan.",
+  p4Title: "Nachbetreuung", p4Text: "Ein kurzer Check-in ein paar Tage später, um zu sehen, wie der Plan funktioniert, und ihn anzupassen.",
+  aboutLabel: "Über mich",
+  aboutTitle: "Hallo, ich bin Neeraja. <em>Schön, dass du hier bist.</em>",
+  aboutP1: "Ich bin Certified Advanced Lactation Enabler (CALE), zertifiziert von Breastfeeding Support for Indian Mothers (BSIM), und arbeite als Stillberaterin in Berlin. Ich begleite frischgebackene Mütter auf dem schönen und manchmal herausfordernden Weg des Stillens.",
+  aboutP2: "Meine Begleitung ist einfühlsam, persönlich und wertfrei, damit du dich sicher, ruhig und verbunden mit deinem Baby fühlst. Bevor ich zur Stillberatung kam, habe ich Informatik studiert, und dieses klare, schrittweise Denken bringe ich in jeden Plan ein.",
+  aboutQuote: "Lasst uns über das Chaos und die Magie sprechen. Lasst uns Stillen zur Normalität machen.",
+  certLabel: "Ausbildung und Zertifizierung",
+  certText: "Die höchste Stufe des dreistufigen Stillprogramms von Breastfeeding Support for Indian Mothers (BSIM): Elementary, Intermediate und Advanced. Der Kurs wurde von einer International Board Certified Lactation Consultant (IBCLC) entwickelt.",
+  certNote: "Stillberatung ergänzt die Betreuung durch deine Hebamme oder Ärztin, ersetzt sie aber nicht. Medizinische Beschwerden werden von medizinischem Fachpersonal diagnostiziert und behandelt.",
+  faqLabel: "Fragen",
+  faqTitle: "Häufig <em>gestellte Fragen</em>",
+  q1: "Wann sollte ich eine Beratung buchen?",
+  a1: "Immer dann, wenn dich etwas beschäftigt. Manche Mütter melden sich schon in der Schwangerschaft, viele in den ersten zwei Wochen. Je früher wir sprechen, desto kleiner ist das Problem meistens.",
+  q2: "Bietest du Hausbesuche an?",
+  a2: "Ja, ich besuche Familien in und um Berlin. Ein Hausbesuch ist ideal für praktische Hilfe beim Anlegen in den ersten Tagen. Außerhalb Berlins begleite ich dich online.",
+  q3: "Wie funktioniert die Online-Beratung?",
+  a3: "Wir treffen uns per Videocall zu einer Zeit, die dir passt. Du stillst dein Baby wie gewohnt, und wir gehen gemeinsam Anlegen, Stillpositionen und alle deine Fragen durch. Du kannst von überall auf der Welt teilnehmen.",
+  q4: "Wie lange dauert eine Beratung?",
+  a4: "Ein Erstgespräch dauert meist 60 bis 90 Minuten, damit wir Zeit haben, eine ganze Stillmahlzeit gemeinsam zu begleiten. Folgetermine sind kürzer.",
+  q5: "Was kostet eine Beratung?",
+  a5: "Das hängt von der Art der Beratung ab und davon, ob sie als Hausbesuch oder online stattfindet. Schreib mir eine Nachricht, dann nenne ich dir meine aktuellen Preise, bevor du buchst.",
+  q6: "Was beinhaltet eine Beratung?",
+  a6: "Ich biete Information und praktische Anleitung, basierend auf dem, was du mir über das Stillen, dein Baby und deine Ziele erzählst. Ich stelle keine Diagnosen und verschreibe keine Medikamente.",
+  q7: "Ersetzt das meine Ärztin oder Hebamme?",
+  a7: "Nein. Meine Begleitung ergänzt deine medizinische Versorgung. Wenn etwas medizinisch abgeklärt werden sollte, verweise ich dich an deine Ärztin oder Hebamme.",
+  contactLabel: "Kontakt",
+  contactTitle: "Bereit, dich beim Stillen <em>sicherer</em> zu fühlen?",
+  contactText: "Meine DMs sind immer offen. Schreib mir kurz, was los ist, und ich melde mich mit freien Terminen und den nächsten Schritten.",
+  contactBtn: "Schreib mir auf Instagram <span class=\"arrow\" aria-hidden=\"true\">→</span>",
+  kWhatsapp: "WhatsApp-Kanal", vWhatsapp: "Tipps und Neuigkeiten",
+  kHome: "Hausbesuche", vHome: "In und um Berlin",
+  vOnline: "Weltweit", kCred: "Qualifikation",
+  footerNote: "Die Informationen auf dieser Seite sind allgemein und ersetzen keine medizinische Beratung."
+};
+var LABELS = { en: { open: "Open menu", close: "Close menu" }, de: { open: "Menü öffnen", close: "Menü schließen" } };
+var currentLang = "en";
+
 (function () {
-  var header = document.querySelector('header.top');
-  var btn = header && header.querySelector('.menu-toggle');
+  var nodes = document.querySelectorAll("[data-i18n]");
+  var en = {};
+  nodes.forEach(function (el) { var k = el.getAttribute("data-i18n"); if (!(k in en)) en[k] = el.innerHTML; });
+  var buttons = document.querySelectorAll(".lang button");
+
+  function apply(lang) {
+    currentLang = lang === "de" ? "de" : "en";
+    var dict = currentLang === "de" ? I18N_DE : en;
+    nodes.forEach(function (el) { var k = el.getAttribute("data-i18n"); if (dict[k] != null) el.innerHTML = dict[k]; });
+    document.documentElement.lang = currentLang;
+    buttons.forEach(function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-lang") === currentLang ? "true" : "false"); });
+    var t = document.querySelector(".menu-toggle");
+    if (t) t.setAttribute("aria-label", LABELS[currentLang][t.getAttribute("aria-expanded") === "true" ? "close" : "open"]);
+  }
+
+  buttons.forEach(function (b) {
+    b.addEventListener("click", function () {
+      var l = b.getAttribute("data-lang");
+      apply(l);
+      try { localStorage.setItem("tlw-lang", l); } catch (e) {}
+    });
+  });
+
+  var saved = null;
+  try { saved = localStorage.getItem("tlw-lang"); } catch (e) {}
+  var initial = saved || ((navigator.language || "").toLowerCase().indexOf("de") === 0 ? "de" : "en");
+  if (initial !== "en") apply(initial);
+})();
+
+(function () {
+  var header = document.querySelector("header.top");
+  var btn = header && header.querySelector(".menu-toggle");
   if (!header) return;
-  function onScroll() { header.classList.toggle('scrolled', window.scrollY > 8); }
-  window.addEventListener('scroll', onScroll, { passive: true });
+  function onScroll() { header.classList.toggle("scrolled", window.scrollY > 8); }
+  window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
   if (!btn) return;
   function setOpen(open) {
-    header.classList.toggle('open', open);
-    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-    btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    header.classList.toggle("open", open);
+    btn.setAttribute("aria-expanded", open ? "true" : "false");
+    btn.setAttribute("aria-label", LABELS[currentLang][open ? "close" : "open"]);
   }
-  btn.addEventListener('click', function () { setOpen(!header.classList.contains('open')); });
-  header.querySelectorAll('nav a').forEach(function (a) { a.addEventListener('click', function () { setOpen(false); }); });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
+  btn.addEventListener("click", function () { setOpen(!header.classList.contains("open")); });
+  header.querySelectorAll("nav a").forEach(function (a) { a.addEventListener("click", function () { setOpen(false); }); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") setOpen(false); });
 })();
-document.querySelectorAll('.portrait-wrap').forEach(function (el) {
-  ['contextmenu', 'dragstart'].forEach(function (ev) { el.addEventListener(ev, function (e) { e.preventDefault(); }); });
+
+document.querySelectorAll(".portrait-wrap").forEach(function (el) {
+  ["contextmenu", "dragstart"].forEach(function (ev) { el.addEventListener(ev, function (e) { e.preventDefault(); }); });
 });
 </script>
 </body>
